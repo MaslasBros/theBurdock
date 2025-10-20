@@ -1,0 +1,18 @@
+{ 
+    "rest": {
+        "module_path": "modules.redmine",
+        "module_class": "RedmineAPI",
+        "url": "http://proj.foufoutos.ch", 
+        "api_key": "65b93eb1afd76a43d29063e215daded5902edfd7",
+        "project_id" : "beta"
+    }, 
+    "token": "A_DISCORD_APP_TOKEN",
+    "timeout": 30,
+    "channel_id": 6666666666666666666,
+    "logging": { 
+        "enabled": true, 
+        "log_level": "info", 
+        "log_path": "./logs/", 
+        "log_file": "the_burdock.log"
+    }
+}
