@@ -19,12 +19,12 @@ class TheBurdock(discord.Client):
         self.rest = rest(self.config.rest.url, self.config.rest.api_key)
         
         # Collects the last issue ID from the Rest API.
-        last_issue = self.rest.get_last_issue(self.config.rest.project_id)
+        """last_issue = self.rest.get_last_issue(self.config.rest.project_id)
 
-        if last_issue is None:
+       	if last_issue is None:
             self.last_issue = 0
         else:
-            self.last_issue = last_issue['id']
+            self.last_issue = last_issue['id']"""
 
         # Starts the update issues runtime.
         await self.update_issues()
