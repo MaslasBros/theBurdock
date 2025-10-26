@@ -30,7 +30,13 @@ class TheBurdock(discord.Client):
         channel = self.get_channel(self.config.channel_id)
         
         # Purges all the messages of the channel before it starts importing the latest ones. 
-        channel.purge(limit=None)
+        async for message in channel.history(limit=None):
+            try:
+                await message.delete()
+            except discord.errors.Forbidden:
+                print(f"Skipping message: no permission to delete {message.id}")
+            except discord.errors.HTTPException:
+                await asyncio.sleep(1)  # Avoid hitting rate limits
 
         # Starts the update issues runtime.
         await self.update_issues()
