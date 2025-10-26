@@ -25,6 +25,12 @@ class TheBurdock(discord.Client):
             self.last_issue = 0
         else:
             self.last_issue = last_issue['id']"""
+            
+        # Accesses the corresponding channel by its provided ID
+        channel = self.get_channel(self.config.channel_id)
+        
+        # Purges all the messages of the channel before it starts importing the latest ones. 
+        channel.purge(limit=None)
 
         # Starts the update issues runtime.
         await self.update_issues()
