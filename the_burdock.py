@@ -39,14 +39,13 @@ class TheBurdock(discord.Client):
                 await asyncio.sleep(1)  # Avoid hitting rate limits
 
         # Starts the update issues runtime.
-        await self.update_issues()
+        asyncio.create_task(self.update_issues())
 
     async def update_issues(self):
         while True:
-            last_issues = self.rest.get_last_issues(self.last_issue, self.config.rest.project_id)
-            length = len(last_issues)
+            last_issues = await loop.run_in_executor(None, self.rest.get_last_issues, self.last_issue, self.config.rest.project_id)
 
-            if length > 0:
+            if last_issues:
                 # Collects all the issues reported after the last logged issue ID.
                 self.last_issue = last_issues[-1]['id']
 
