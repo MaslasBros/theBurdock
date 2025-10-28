@@ -72,7 +72,7 @@ class RedmineAPI(RestAPI):
                 "sort": "id:asc",
                 "limit": limit,
                 "offset": offset,
-                "status_id": "*",  # Include all statuses
+                "status_id": "open",  # Include all statuses
             }
 
             data = self.get("issues.json", params=params)
