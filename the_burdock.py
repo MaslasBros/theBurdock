@@ -43,9 +43,10 @@ class TheBurdock(discord.Client):
 
     async def update_issues(self):
         while True:
-            last_issues = await loop.run_in_executor(None, self.rest.get_last_issues, self.last_issue, self.config.rest.project_id)
-
-            if last_issues:
+            last_issues = self.rest.get_last_issues(self.last_issue, self.config.rest.project_id)
+            length = len(last_issues)
+            
+            if length > 0:
                 # Collects all the issues reported after the last logged issue ID.
                 self.last_issue = last_issues[-1]['id']
 
